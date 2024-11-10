@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class CounterViewController: UIViewController {
 
     @IBOutlet weak var counterLabel: UILabel!
     @IBOutlet weak var decrementButton: UIButton!
