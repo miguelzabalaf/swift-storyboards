@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ShowViewController: UIViewController {
+class InstagramViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     /*
@@ -46,7 +46,7 @@ class ShowViewController: UIViewController {
 
 
 // MARK: - UITableViewDataSource
-extension ShowViewController: UITableViewDataSource {
+extension InstagramViewController: UITableViewDataSource {
     // Number of rows
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
@@ -79,7 +79,7 @@ extension ShowViewController: UITableViewDataSource {
 
 
 // MARK: - UITableViewDelegate
-extension ShowViewController: UITableViewDelegate {
+extension InstagramViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Do something after select
     }

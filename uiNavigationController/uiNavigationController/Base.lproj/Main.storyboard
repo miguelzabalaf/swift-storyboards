@@ -28,7 +28,7 @@
                                                 <color key="backgroundColor" systemColor="systemRedColor"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Show"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Instagram"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                         <integer key="value" value="16"/>
@@ -43,14 +43,14 @@
                                                 <color key="backgroundColor" systemColor="systemIndigoColor"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Show Detail"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Tiktok"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                         <integer key="value" value="16"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <segue destination="ByF-2F-hPp" kind="showDetail" id="UYL-a8-KAw"/>
+                                                    <segue destination="ByF-2F-hPp" kind="presentation" modalPresentationStyle="overCurrentContext" id="UYL-a8-KAw"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -113,7 +113,7 @@
         <!--Instagram-->
         <scene sceneID="IzN-PZ-Giw">
             <objects>
-                <viewController id="5hm-vf-8ca" customClass="ShowViewController" customModule="uiNavigationController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="5hm-vf-8ca" customClass="InstagramViewController" customModule="uiNavigationController" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="THi-oc-FHm">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -139,23 +139,125 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="glQ-pH-LC2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1846.564885496183" y="-957.04225352112678"/>
+            <point key="canvasLocation" x="2068" y="-965"/>
         </scene>
         <!--Show Detail-->
         <scene sceneID="DSU-1z-oKU">
             <objects>
-                <viewController id="ByF-2F-hPp" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="fri-WG-kat">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                <viewController id="ByF-2F-hPp" customClass="TikTokViewController" customModule="uiNavigationController" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fri-WG-kat" customClass="TikTok">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="48i-SR-DfF"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="o3F-Dq-NYc" userLabel="Main VStack View">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jK8-M0-Rdk" userLabel="Media Container View">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="768"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="60H-xQ-ReI" userLabel="Bottom Tab Container View">
+                                        <rect key="frame" x="0.0" y="768" width="393" height="84"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="VYU-Va-LYe" userLabel="Buttons Container HStack">
+                                                <rect key="frame" x="15" y="5" width="363" height="39"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bnu-eR-8is" userLabel="Button Home View">
+                                                        <rect key="frame" x="0.0" y="0.0" width="72.333333333333329" height="39"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tiktok_icon_home" translatesAutoresizingMaskIntoConstraints="NO" id="iKO-pk-uvS">
+                                                                <rect key="frame" x="3.6666666666666679" y="0.0" width="45" height="39"/>
+                                                            </imageView>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="iKO-pk-uvS" firstAttribute="centerY" secondItem="bnu-eR-8is" secondAttribute="centerY" id="EeC-8E-rNX"/>
+                                                            <constraint firstItem="iKO-pk-uvS" firstAttribute="centerX" secondItem="bnu-eR-8is" secondAttribute="centerX" constant="-10" id="RHD-tp-ed1"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Z4-1r-93o" userLabel="Button Friends View">
+                                                        <rect key="frame" x="72.333333333333329" y="0.0" width="72.999999999999986" height="39"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tiktok_icon_friends" translatesAutoresizingMaskIntoConstraints="NO" id="5UX-Ua-aAo">
+                                                                <rect key="frame" x="9" y="0.0" width="45" height="39"/>
+                                                            </imageView>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="5UX-Ua-aAo" firstAttribute="centerY" secondItem="0Z4-1r-93o" secondAttribute="centerY" id="6Jg-g1-JLr"/>
+                                                            <constraint firstItem="5UX-Ua-aAo" firstAttribute="centerX" secondItem="0Z4-1r-93o" secondAttribute="centerX" constant="-5" id="s14-No-WiV"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s6W-ys-xQI" userLabel="Button Add View">
+                                                        <rect key="frame" x="145.33333333333334" y="0.0" width="72.333333333333343" height="39"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O0z-Ez-aVH" userLabel="Button Add">
+                                                                <rect key="frame" x="1.6666666666666572" y="-2" width="69" height="43"/>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="plain" image="tiktok_icon_add"/>
+                                                            </button>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="O0z-Ez-aVH" firstAttribute="centerY" secondItem="s6W-ys-xQI" secondAttribute="centerY" id="FsS-gq-hyR"/>
+                                                            <constraint firstItem="O0z-Ez-aVH" firstAttribute="centerX" secondItem="s6W-ys-xQI" secondAttribute="centerX" id="L0m-NG-VpL"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vRZ-Y1-wnw" userLabel="Button Inbox View">
+                                                        <rect key="frame" x="217.66666666666666" y="0.0" width="72.666666666666657" height="39"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tiktok_icon_inbox" translatesAutoresizingMaskIntoConstraints="NO" id="oPE-Eh-Gti">
+                                                                <rect key="frame" x="18.333333333333343" y="0.0" width="46" height="39"/>
+                                                            </imageView>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="oPE-Eh-Gti" firstAttribute="centerY" secondItem="vRZ-Y1-wnw" secondAttribute="centerY" id="3TP-8y-59D"/>
+                                                            <constraint firstItem="oPE-Eh-Gti" firstAttribute="centerX" secondItem="vRZ-Y1-wnw" secondAttribute="centerX" constant="5" id="Pde-Xv-URE"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M5Q-VI-K9k" userLabel="Button Profile View">
+                                                        <rect key="frame" x="290.33333333333331" y="0.0" width="72.666666666666686" height="39"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tiktok_icon_profile" translatesAutoresizingMaskIntoConstraints="NO" id="Zl6-Zw-JdU">
+                                                                <rect key="frame" x="29" y="0.0" width="45" height="39"/>
+                                                            </imageView>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="Zl6-Zw-JdU" firstAttribute="centerX" secondItem="M5Q-VI-K9k" secondAttribute="centerX" constant="15" id="Ezd-8q-ujC"/>
+                                                            <constraint firstItem="Zl6-Zw-JdU" firstAttribute="centerY" secondItem="M5Q-VI-K9k" secondAttribute="centerY" id="cWd-Wc-MXZ"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="VYU-Va-LYe" firstAttribute="top" secondItem="60H-xQ-ReI" secondAttribute="top" constant="5" id="8yw-Yz-ZQG"/>
+                                            <constraint firstAttribute="trailing" secondItem="VYU-Va-LYe" secondAttribute="trailing" constant="15" id="HdA-dS-n2X"/>
+                                            <constraint firstItem="VYU-Va-LYe" firstAttribute="leading" secondItem="60H-xQ-ReI" secondAttribute="leading" constant="15" id="SLf-aC-n1S"/>
+                                            <constraint firstAttribute="height" constant="84" id="VL2-PA-JIh"/>
+                                            <constraint firstAttribute="bottom" secondItem="VYU-Va-LYe" secondAttribute="bottom" constant="40" id="uQQ-of-5ER"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <viewLayoutGuide key="safeArea" id="z49-im-9cG"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="60H-xQ-ReI" firstAttribute="trailing" secondItem="o3F-Dq-NYc" secondAttribute="trailingMargin" id="2pF-XL-Sjo"/>
+                                    <constraint firstItem="60H-xQ-ReI" firstAttribute="bottom" secondItem="z49-im-9cG" secondAttribute="bottom" id="L6e-gP-h0q"/>
+                                    <constraint firstItem="60H-xQ-ReI" firstAttribute="leading" secondItem="o3F-Dq-NYc" secondAttribute="leadingMargin" id="WgG-sT-XIm"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="XbR-uK-2r9"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="o3F-Dq-NYc" firstAttribute="leading" secondItem="fri-WG-kat" secondAttribute="leading" id="8sl-o3-ECn"/>
+                            <constraint firstAttribute="bottom" secondItem="o3F-Dq-NYc" secondAttribute="bottom" id="YwG-xc-B8O"/>
+                            <constraint firstItem="o3F-Dq-NYc" firstAttribute="top" secondItem="fri-WG-kat" secondAttribute="top" id="al9-ya-xSW"/>
+                            <constraint firstAttribute="trailing" secondItem="o3F-Dq-NYc" secondAttribute="trailing" id="nih-1J-q5j"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Show Detail" id="dwI-Jy-uat" userLabel="Show Detail"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jRB-bm-epX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2069" y="-294"/>
+            <point key="canvasLocation" x="2067.93893129771" y="-294.36619718309862"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="y5P-eu-rXw">
@@ -170,7 +272,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k1a-SI-qLj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2068" y="365"/>
+            <point key="canvasLocation" x="2068" y="381"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="pW8-59-llO">
@@ -185,7 +287,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H3o-lf-7Jw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1847" y="1015"/>
+            <point key="canvasLocation" x="2068" y="1056"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="FbP-zS-DVf">
@@ -207,6 +309,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="tiktok_icon_add" width="45" height="29"/>
+        <image name="tiktok_icon_friends" width="45" height="39"/>
+        <image name="tiktok_icon_home" width="45" height="39"/>
+        <image name="tiktok_icon_inbox" width="46" height="39"/>
+        <image name="tiktok_icon_profile" width="45" height="39"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
