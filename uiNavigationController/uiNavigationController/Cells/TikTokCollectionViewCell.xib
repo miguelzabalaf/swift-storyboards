@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <accessibilityOverrides/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
@@ -47,6 +48,27 @@
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dpT-oZ-pOA" userLabel="Pause/Play Space">
                                                                         <rect key="frame" x="65" y="0.0" width="255" height="609.33333333333337"/>
+                                                                        <subviews>
+                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CbO-KL-jgG">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="255" height="609.33333333333337"/>
+                                                                                <state key="normal" title="Button"/>
+                                                                                <buttonConfiguration key="configuration" style="plain" title=""/>
+                                                                                <userDefinedRuntimeAttributes>
+                                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.zPosition">
+                                                                                        <integer key="value" value="1"/>
+                                                                                    </userDefinedRuntimeAttribute>
+                                                                                </userDefinedRuntimeAttributes>
+                                                                                <connections>
+                                                                                    <action selector="centerButtonDidPress:" destination="gTV-IL-0wX" eventType="touchUpInside" id="iV4-tP-KGp"/>
+                                                                                </connections>
+                                                                            </button>
+                                                                        </subviews>
+                                                                        <constraints>
+                                                                            <constraint firstItem="CbO-KL-jgG" firstAttribute="leading" secondItem="dpT-oZ-pOA" secondAttribute="leading" id="KGt-ic-tKZ"/>
+                                                                            <constraint firstItem="CbO-KL-jgG" firstAttribute="top" secondItem="dpT-oZ-pOA" secondAttribute="top" id="NXm-QU-h6F"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="CbO-KL-jgG" secondAttribute="bottom" id="WOr-Lv-1YB"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="CbO-KL-jgG" secondAttribute="trailing" id="XTY-po-9Ma"/>
+                                                                        </constraints>
                                                                     </view>
                                                                 </subviews>
                                                             </stackView>
@@ -62,19 +84,19 @@
                                                         <rect key="frame" x="0.0" y="609.33333333333337" width="320" height="125.66666666666663"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="PFB-HD-BiX" userLabel="Labels Container VStack View">
-                                                                <rect key="frame" x="15" y="58.333333333333258" width="290" height="42.333333333333343"/>
+                                                                <rect key="frame" x="15" y="55" width="290" height="45.666666666666657"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Miguel Zabala F." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bQ7-6N-RiK">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="290" height="19.333333333333332"/>
-                                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="290" height="21.666666666666668"/>
+                                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                         <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <size key="shadowOffset" width="0.0" height="0.0"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is an exampleo clone of TikTok, the home scenario😉" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aeh-eR-T1a">
-                                                                        <rect key="frame" x="0.0" y="25.333333333333371" width="290" height="17"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                        <rect key="frame" x="0.0" y="27.666666666666629" width="290" height="18"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                         <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -227,14 +249,24 @@
                                     <constraint firstAttribute="bottom" secondItem="BDd-0O-M5h" secondAttribute="bottom" id="vHD-sX-bnt"/>
                                 </constraints>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" image="play.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Q97-1o-BTi">
+                                <rect key="frame" x="165" y="327.66666666666663" width="55" height="80"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="84.333333333333314" id="BqS-RK-AbJ"/>
+                                    <constraint firstAttribute="width" constant="55" id="bsV-Lw-fhx"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="hk2-WX-3iY" firstAttribute="top" secondItem="nfx-YA-5DL" secondAttribute="top" id="DdE-yd-PHq"/>
+                            <constraint firstItem="Q97-1o-BTi" firstAttribute="centerY" secondItem="nfx-YA-5DL" secondAttribute="centerY" id="Rq1-ip-8FP"/>
                             <constraint firstAttribute="trailing" secondItem="hk2-WX-3iY" secondAttribute="trailing" id="Uct-E7-LFy"/>
                             <constraint firstAttribute="bottom" secondItem="pGR-W7-NeA" secondAttribute="bottom" id="Vd9-q2-Byz"/>
                             <constraint firstAttribute="trailing" secondItem="pGR-W7-NeA" secondAttribute="trailing" id="ZYK-fD-W70"/>
                             <constraint firstItem="pGR-W7-NeA" firstAttribute="top" secondItem="nfx-YA-5DL" secondAttribute="top" id="Zuo-bi-E07"/>
+                            <constraint firstItem="Q97-1o-BTi" firstAttribute="centerX" secondItem="nfx-YA-5DL" secondAttribute="centerX" id="gfc-4W-njP"/>
                             <constraint firstItem="pGR-W7-NeA" firstAttribute="leading" secondItem="nfx-YA-5DL" secondAttribute="leading" id="n47-jq-JNg"/>
                             <constraint firstItem="hk2-WX-3iY" firstAttribute="leading" secondItem="nfx-YA-5DL" secondAttribute="leading" id="nKd-bq-yqW"/>
                             <constraint firstAttribute="bottom" secondItem="hk2-WX-3iY" secondAttribute="bottom" id="ueD-c5-nHR"/>
@@ -254,12 +286,23 @@
                 <constraint firstItem="nfx-YA-5DL" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="nOj-T7-7cH"/>
             </constraints>
             <size key="customSize" width="385" height="735"/>
+            <connections>
+                <outlet property="actionsContainer" destination="nTB-D4-thK" id="iWy-HE-Amg"/>
+                <outlet property="centerButton" destination="CbO-KL-jgG" id="MDL-hm-sYQ"/>
+                <outlet property="descriptionLabel" destination="aeh-eR-T1a" id="Os7-Q1-zRz"/>
+                <outlet property="labelsContainer" destination="PFB-HD-BiX" id="JMN-kb-F2Z"/>
+                <outlet property="playImage" destination="Q97-1o-BTi" id="pzy-nW-6QF"/>
+                <outlet property="postImage" destination="pGR-W7-NeA" id="LHL-FC-vSr"/>
+                <outlet property="profileImage" destination="gcD-5S-dk3" id="EbT-AX-RZj"/>
+                <outlet property="userLabel" destination="bQ7-6N-RiK" id="gzs-uj-1P7"/>
+            </connections>
             <point key="canvasLocation" x="228.24427480916029" y="261.61971830985919"/>
         </collectionViewCell>
     </objects>
     <resources>
         <image name="4" width="501.5" height="501.5"/>
         <image name="5" width="1290" height="2293"/>
+        <image name="play.fill" catalog="system" width="120" height="128"/>
         <image name="tiktok_icon_follow" width="24" height="24"/>
         <image name="tiktok_reacts" width="46" height="246"/>
         <systemColor name="systemBackgroundColor">

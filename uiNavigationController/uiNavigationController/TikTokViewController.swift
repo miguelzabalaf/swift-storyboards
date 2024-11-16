@@ -7,11 +7,25 @@
 
 import UIKit
 
+struct TikTokData {
+    var user: String
+    var postImage: UIImage
+    var profileImage: UIImage
+    var description: String
+}
+
 class TikTokViewController: UIViewController {
 
     @IBOutlet weak var tiktokCollectionView: UICollectionView!
     @IBOutlet weak var tiktokCollectionViewFlowLayout: UICollectionViewFlowLayout!
+ 
+    var dataSource: [TikTokData] = [
+        .init(user: "Miguel Zabala F.", postImage: ._5, profileImage: ._1, description: "This is my first post in this TikTok clone 😮‍💨"),
+        .init(user: "Migue", postImage: ._4, profileImage: ._2, description: "What's up my friends 🫡, this is my second post in this TikTok clone"),
+        .init(user: "mig.code", postImage: ._2, profileImage: ._4, description: "This UI🥶 was created with storyboards!"),
+    ]
     
+    private var previousVisibleIndex: IndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +38,7 @@ class TikTokViewController: UIViewController {
 
         tiktokCollectionView.setCollectionViewLayout(tiktokCollectionViewFlowLayout, animated: false)
         tiktokCollectionView.isPagingEnabled = true
+        tiktokCollectionView.showsVerticalScrollIndicator = false
         tiktokCollectionView.dataSource = self
         tiktokCollectionView.delegate = self
         tiktokCollectionView.decelerationRate = .fast
@@ -48,11 +63,17 @@ class TikTokViewController: UIViewController {
 
 extension TikTokViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return dataSource.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let currentCellData = dataSource[indexPath.row]
+        let isTheFristCell = indexPath.row == 0
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TikTokCollectionViewCell", for: indexPath) as! TikTokCollectionViewCell
+        cell.setupTikTokData(with: currentCellData)
+        if isTheFristCell {
+            cell.setIsPlaying(true)
+        }
         return cell
     }
 }
@@ -68,5 +89,56 @@ extension TikTokViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0 // Space between columns
+    }
+}
+
+extension TikTokViewController: UIScrollViewDelegate {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        updateVisibleIndex(scrollView)
+    }
+
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if !decelerate {
+            updateVisibleIndex(scrollView)
+        }
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        print("Start to drag")
+        self.updateVisibleIndex(scrollView, isDragging: true)
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        print("End to drag")
+        updateVisibleIndex(scrollView, isDragging: false)
+    }
+    
+    private func updateVisibleIndex(_ scrollView: UIScrollView, isDragging: Bool = false) {
+        if let collectionView = scrollView as? UICollectionView {
+            let visibleRect = CGRect(origin: collectionView.contentOffset, size: collectionView.bounds.size)
+            if let visibleIndexPath = collectionView.indexPathForItem(at: CGPoint(x: visibleRect.midX, y: visibleRect.midY)) {
+                let visibleCell = collectionView.cellForItem(at: visibleIndexPath) as? TikTokCollectionViewCell
+                // Verifica si el índice visible ha cambiado
+                if previousVisibleIndex != visibleIndexPath {
+                    // Pausar el video de la celda anterior si existe
+                    if let previousIndex = previousVisibleIndex,
+                       let previousCell = collectionView.cellForItem(at: previousIndex) as? TikTokCollectionViewCell {
+                        previousCell.setIsPlaying(false)
+                        print("Paused previous video with index: \(previousIndex.row)")
+                    }
+
+                    // Actualizar la celda visible actual
+                    if let visibleCell = visibleCell {
+                        visibleCell.setIsPlaying(true)
+                        print("Played video with index: \(visibleIndexPath.row)")
+                    }
+
+                    // Actualiza el índice visible previo
+                    previousVisibleIndex = visibleIndexPath
+                    print("New previous index: \(visibleIndexPath.row)")
+                }
+                visibleCell?.setIsDragging(isDragging)
+            }
+        }
     }
 }
