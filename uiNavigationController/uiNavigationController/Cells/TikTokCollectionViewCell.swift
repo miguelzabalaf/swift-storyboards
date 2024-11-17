@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 struct TiktokState {
     var isplaying: Bool
@@ -18,14 +19,17 @@ class TikTokCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var userLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
-    @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var playImage: UIImageView!
     @IBOutlet weak var labelsContainer: UIStackView!
     @IBOutlet weak var actionsContainer: UIView!
     @IBOutlet weak var centerButton: UIButton!
+    @IBOutlet weak var videoView: UIView!
     
     var state: TiktokState = .init(isplaying: true, isDragging: false)
     var data: TikTokData?
+    
+    private var player: AVPlayer?
+    private var playerLayer: AVPlayerLayer?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,7 +40,27 @@ class TikTokCollectionViewCell: UICollectionViewCell {
         self.userLabel.text = data.user
         self.descriptionLabel.text = data.description
         self.profileImage.image = data.profileImage
-        self.postImage.image = data.postImage
+        setupVideo(with: data.videoName, fileType: "mov")
+    }
+    
+    public func setupVideo(with videoName: String, fileType: String) {
+        guard let videoURL = Bundle.main.url(forResource: videoName, withExtension: fileType) else {
+            print("Error: video not found \(videoName).\(fileType)")
+            return
+        }
+        self.player = AVPlayer(url: videoURL)
+        self.playerLayer = AVPlayerLayer(player: self.player)
+        self.playerLayer?.frame = self.videoView.bounds
+        self.playerLayer?.videoGravity = .resizeAspect
+        self.videoView.layer.addSublayer(self.playerLayer!)
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        player?.pause()
+        playerLayer?.removeFromSuperlayer()
+        player = nil
+        playerLayer = nil
     }
     
     private func hidePlayImage() {
@@ -49,10 +73,12 @@ class TikTokCollectionViewCell: UICollectionViewCell {
     
     private func playVideo() {
         hidePlayImage()
+        self.player?.play()
     }
     
     private func pauseVideo() {
         showPlayImage()
+        self.player?.pause()
     }
 
     @IBAction func centerButtonDidPress(_ sender: Any) {

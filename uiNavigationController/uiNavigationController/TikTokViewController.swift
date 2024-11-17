@@ -9,9 +9,9 @@ import UIKit
 
 struct TikTokData {
     var user: String
-    var postImage: UIImage
     var profileImage: UIImage
     var description: String
+    var videoName: String
 }
 
 class TikTokViewController: UIViewController {
@@ -20,9 +20,11 @@ class TikTokViewController: UIViewController {
     @IBOutlet weak var tiktokCollectionViewFlowLayout: UICollectionViewFlowLayout!
  
     var dataSource: [TikTokData] = [
-        .init(user: "Miguel Zabala F.", postImage: ._5, profileImage: ._1, description: "This is my first post in this TikTok clone 😮‍💨"),
-        .init(user: "Migue", postImage: ._4, profileImage: ._2, description: "What's up my friends 🫡, this is my second post in this TikTok clone"),
-        .init(user: "mig.code", postImage: ._2, profileImage: ._4, description: "This UI🥶 was created with storyboards!"),
+        .init(user: "Miguel Zabala F.", profileImage: ._1, description: "This is my first post in this TikTok clone 😮‍💨", videoName: "video1"),
+        .init(user: "Migue", profileImage: ._2, description: "What's up my friends 🫡, this is my second post in this TikTok clone", videoName: "video2"),
+        .init(user: "mig.code", profileImage: ._4, description: "This UI🥶 was created with storyboards!", videoName: "video3"),
+        .init(user: "Miguel Zabala F.", profileImage: ._1, description: "This is my first post in this TikTok clone 😮‍💨", videoName: "video4"),
+        .init(user: "Migue", profileImage: ._2, description: "What's up my friends 🫡, this is my second post in this TikTok clone", videoName: "video5"),
     ]
     
     private var previousVisibleIndex: IndexPath?

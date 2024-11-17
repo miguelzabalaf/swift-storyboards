@@ -6,7 +6,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -22,10 +21,11 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nfx-YA-5DL" userLabel="TikTok Container View">
                         <rect key="frame" x="0.0" y="0.0" width="385" height="735"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="5" translatesAutoresizingMaskIntoConstraints="NO" id="pGR-W7-NeA" userLabel="TikTok Media">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nhH-sh-qtn" userLabel="Video View">
                                 <rect key="frame" x="0.0" y="0.0" width="385" height="735"/>
-                            </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hk2-WX-3iY">
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hk2-WX-3iY" userLabel="Content View">
                                 <rect key="frame" x="0.0" y="0.0" width="385" height="735"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BDd-0O-M5h">
@@ -258,16 +258,15 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="nhH-sh-qtn" secondAttribute="bottom" id="4Ul-63-NVF"/>
                             <constraint firstItem="hk2-WX-3iY" firstAttribute="top" secondItem="nfx-YA-5DL" secondAttribute="top" id="DdE-yd-PHq"/>
                             <constraint firstItem="Q97-1o-BTi" firstAttribute="centerY" secondItem="nfx-YA-5DL" secondAttribute="centerY" id="Rq1-ip-8FP"/>
                             <constraint firstAttribute="trailing" secondItem="hk2-WX-3iY" secondAttribute="trailing" id="Uct-E7-LFy"/>
-                            <constraint firstAttribute="bottom" secondItem="pGR-W7-NeA" secondAttribute="bottom" id="Vd9-q2-Byz"/>
-                            <constraint firstAttribute="trailing" secondItem="pGR-W7-NeA" secondAttribute="trailing" id="ZYK-fD-W70"/>
-                            <constraint firstItem="pGR-W7-NeA" firstAttribute="top" secondItem="nfx-YA-5DL" secondAttribute="top" id="Zuo-bi-E07"/>
+                            <constraint firstItem="nhH-sh-qtn" firstAttribute="leading" secondItem="nfx-YA-5DL" secondAttribute="leading" id="VwK-bs-UPv"/>
+                            <constraint firstItem="nhH-sh-qtn" firstAttribute="top" secondItem="nfx-YA-5DL" secondAttribute="top" id="Ydr-nd-uY2"/>
+                            <constraint firstAttribute="trailing" secondItem="nhH-sh-qtn" secondAttribute="trailing" id="ZVl-Jh-EVP"/>
                             <constraint firstItem="Q97-1o-BTi" firstAttribute="centerX" secondItem="nfx-YA-5DL" secondAttribute="centerX" id="gfc-4W-njP"/>
-                            <constraint firstItem="pGR-W7-NeA" firstAttribute="leading" secondItem="nfx-YA-5DL" secondAttribute="leading" id="n47-jq-JNg"/>
                             <constraint firstItem="hk2-WX-3iY" firstAttribute="leading" secondItem="nfx-YA-5DL" secondAttribute="leading" id="nKd-bq-yqW"/>
                             <constraint firstAttribute="bottom" secondItem="hk2-WX-3iY" secondAttribute="bottom" id="ueD-c5-nHR"/>
                         </constraints>
@@ -292,21 +291,17 @@
                 <outlet property="descriptionLabel" destination="aeh-eR-T1a" id="Os7-Q1-zRz"/>
                 <outlet property="labelsContainer" destination="PFB-HD-BiX" id="JMN-kb-F2Z"/>
                 <outlet property="playImage" destination="Q97-1o-BTi" id="pzy-nW-6QF"/>
-                <outlet property="postImage" destination="pGR-W7-NeA" id="LHL-FC-vSr"/>
                 <outlet property="profileImage" destination="gcD-5S-dk3" id="EbT-AX-RZj"/>
                 <outlet property="userLabel" destination="bQ7-6N-RiK" id="gzs-uj-1P7"/>
+                <outlet property="videoView" destination="nhH-sh-qtn" id="SYI-Ee-KYO"/>
             </connections>
             <point key="canvasLocation" x="228.24427480916029" y="261.61971830985919"/>
         </collectionViewCell>
     </objects>
     <resources>
         <image name="4" width="501.5" height="501.5"/>
-        <image name="5" width="1290" height="2293"/>
         <image name="play.fill" catalog="system" width="120" height="128"/>
         <image name="tiktok_icon_follow" width="24" height="24"/>
         <image name="tiktok_reacts" width="46" height="246"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>
