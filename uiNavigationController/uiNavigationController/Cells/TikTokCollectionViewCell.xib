@@ -23,7 +23,6 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nhH-sh-qtn" userLabel="Video View">
                                 <rect key="frame" x="0.0" y="0.0" width="385" height="735"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hk2-WX-3iY" userLabel="Content View">
                                 <rect key="frame" x="0.0" y="0.0" width="385" height="735"/>

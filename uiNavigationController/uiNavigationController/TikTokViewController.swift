@@ -28,6 +28,7 @@ class TikTokViewController: UIViewController {
     ]
     
     private var previousVisibleIndex: IndexPath?
+    private var hasExecutedFunctionForFirstCell = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,10 +73,8 @@ extension TikTokViewController: UICollectionViewDataSource, UICollectionViewDele
         let currentCellData = dataSource[indexPath.row]
         let isTheFristCell = indexPath.row == 0
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TikTokCollectionViewCell", for: indexPath) as! TikTokCollectionViewCell
-        cell.setupTikTokData(with: currentCellData)
-        if isTheFristCell {
-            cell.setIsPlaying(true)
-        }
+        cell.setupTikTokData(with: currentCellData, isTheFistVideo: isTheFristCell && !self.hasExecutedFunctionForFirstCell)
+        self.hasExecutedFunctionForFirstCell = true
         return cell
     }
 }
@@ -125,13 +124,13 @@ extension TikTokViewController: UIScrollViewDelegate {
                     // Pausar el video de la celda anterior si existe
                     if let previousIndex = previousVisibleIndex,
                        let previousCell = collectionView.cellForItem(at: previousIndex) as? TikTokCollectionViewCell {
-                        previousCell.setIsPlaying(false)
+                        previousCell.onPreviousCellConfiguration()
                         print("Paused previous video with index: \(previousIndex.row)")
                     }
 
                     // Actualizar la celda visible actual
                     if let visibleCell = visibleCell {
-                        visibleCell.setIsPlaying(true)
+                        visibleCell.onVisibleCellConfiguration()
                         print("Played video with index: \(visibleIndexPath.row)")
                     }
 
@@ -144,3 +143,4 @@ extension TikTokViewController: UIScrollViewDelegate {
         }
     }
 }
+
