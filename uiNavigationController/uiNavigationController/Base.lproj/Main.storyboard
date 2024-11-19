@@ -302,8 +302,10 @@
                     <navigationItem key="navigationItem" title="Show Detail" id="dwI-Jy-uat" userLabel="Show Detail"/>
                     <size key="freeformSize" width="393" height="852"/>
                     <connections>
+                        <outlet property="tiktokBottomTabContainerView" destination="60H-xQ-ReI" id="PSO-TJ-Fzg"/>
                         <outlet property="tiktokCollectionView" destination="I50-FI-UMj" id="2DQ-5d-VpK"/>
                         <outlet property="tiktokCollectionViewFlowLayout" destination="h4u-2f-rWw" id="6YS-9L-Byu"/>
+                        <outlet property="tiktokTopSectionView" destination="DDj-E7-yEV" id="9CQ-u0-7t6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jRB-bm-epX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -41,8 +41,23 @@
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t7A-T3-AVe" userLabel="x2 Press Space View">
                                                                         <rect key="frame" x="0.0" y="0.0" width="65" height="609.33333333333337"/>
+                                                                        <subviews>
+                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="frT-52-CC5">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="65" height="609.33333333333337"/>
+                                                                                <state key="normal" title="Button"/>
+                                                                                <buttonConfiguration key="configuration" style="plain"/>
+                                                                                <connections>
+                                                                                    <action selector="onTouchDownX2:" destination="gTV-IL-0wX" eventType="touchDown" id="Fcq-Re-Xxj"/>
+                                                                                    <action selector="onTouchUpX2:" destination="gTV-IL-0wX" eventType="touchUpInside" id="tId-zZ-8cN"/>
+                                                                                </connections>
+                                                                            </button>
+                                                                        </subviews>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="65" id="2nT-qc-Sgy"/>
+                                                                            <constraint firstItem="frT-52-CC5" firstAttribute="leading" secondItem="t7A-T3-AVe" secondAttribute="leading" id="6WZ-aS-2og"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="frT-52-CC5" secondAttribute="trailing" id="UXp-xn-n8k"/>
+                                                                            <constraint firstItem="frT-52-CC5" firstAttribute="top" secondItem="t7A-T3-AVe" secondAttribute="top" id="dXQ-F7-iy2"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="frT-52-CC5" secondAttribute="bottom" id="rjb-aM-YYw"/>
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dpT-oZ-pOA" userLabel="Pause/Play Space">
@@ -120,6 +135,23 @@
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NhR-ay-eJf" userLabel="x2 Press Space View">
                                                         <rect key="frame" x="0.0" y="0.0" width="65" height="305"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ao7-8l-hW2">
+                                                                <rect key="frame" x="0.0" y="0.0" width="65" height="305"/>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="plain"/>
+                                                                <connections>
+                                                                    <action selector="onTouchDownX2:" destination="gTV-IL-0wX" eventType="touchDown" id="aSs-lR-9IZ"/>
+                                                                    <action selector="onTouchUpX2:" destination="gTV-IL-0wX" eventType="touchUpInside" id="PcW-lh-mMJ"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="ao7-8l-hW2" secondAttribute="trailing" id="4a8-qN-RYh"/>
+                                                            <constraint firstAttribute="bottom" secondItem="ao7-8l-hW2" secondAttribute="bottom" id="JRE-41-OQM"/>
+                                                            <constraint firstItem="ao7-8l-hW2" firstAttribute="top" secondItem="NhR-ay-eJf" secondAttribute="top" id="aAg-vz-6oi"/>
+                                                            <constraint firstItem="ao7-8l-hW2" firstAttribute="leading" secondItem="NhR-ay-eJf" secondAttribute="leading" id="g9e-W3-jOl"/>
+                                                        </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pcN-QV-uXJ" userLabel="Profile and Actions Container View">
                                                         <rect key="frame" x="0.0" y="305" width="65" height="430"/>
@@ -293,6 +325,8 @@
                 <outlet property="profileImage" destination="gcD-5S-dk3" id="EbT-AX-RZj"/>
                 <outlet property="userLabel" destination="bQ7-6N-RiK" id="gzs-uj-1P7"/>
                 <outlet property="videoView" destination="nhH-sh-qtn" id="SYI-Ee-KYO"/>
+                <outlet property="x2ButtonLeft" destination="frT-52-CC5" id="0JJ-gU-N3g"/>
+                <outlet property="x2ButtonRight" destination="ao7-8l-hW2" id="gBi-cN-jjz"/>
             </connections>
             <point key="canvasLocation" x="228.24427480916029" y="261.61971830985919"/>
         </collectionViewCell>

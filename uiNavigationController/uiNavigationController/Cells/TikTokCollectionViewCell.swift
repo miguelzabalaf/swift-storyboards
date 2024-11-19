@@ -7,11 +7,14 @@
 
 import UIKit
 import AVFoundation
-import AVKit
 
 struct TiktokState {
     var isplaying: Bool
     var isDragging: Bool
+}
+
+protocol TikTokCollectionViewCellDelegate {
+    func onX2SpeedEnabled(_ isEnabled: Bool)
 }
 
 
@@ -25,10 +28,20 @@ class TikTokCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var actionsContainer: UIView!
     @IBOutlet weak var centerButton: UIButton!
     @IBOutlet weak var videoView: UIView!
+    @IBOutlet weak var x2ButtonLeft: UIButton!
+    @IBOutlet weak var x2ButtonRight: UIButton!
+    
     
     var state: TiktokState = .init(isplaying: true, isDragging: false)
     var data: TikTokData?
+    var delegate: TikTokCollectionViewCellDelegate?
     var isTheFirstVideo: Bool = false
+    var isX2SpeedEnabled: Bool = false {
+        didSet {
+            self.onX2VideoConfiguration()
+            delegate?.onX2SpeedEnabled(self.isX2SpeedEnabled)
+        }
+    }
     
     private var player: AVPlayer?
     private var playerLayer: AVPlayerLayer?
@@ -93,6 +106,7 @@ class TikTokCollectionViewCell: UICollectionViewCell {
         player?.seek(to: .zero) // Reinicia el video al inicio
         player?.play() // Vuelve a reproducir
         setIsPlaying(true)
+        self.onX2VideoConfiguration()
         print("restartVideo executed")
     }
     
@@ -111,11 +125,15 @@ class TikTokCollectionViewCell: UICollectionViewCell {
     }
     
     private func hidePlayImage() {
-        self.playImage.isHidden = true
+        UIView.animate(withDuration: 0.25) {
+            self.playImage.isHidden = true
+        }
     }
     
     private func showPlayImage() {
-        self.playImage.isHidden = false
+        UIView.animate(withDuration: 0.25) {
+            self.playImage.isHidden = false
+        }
     }
     
     private func playVideo() {
@@ -130,12 +148,26 @@ class TikTokCollectionViewCell: UICollectionViewCell {
         self.state.isplaying ? showPlayImage() : hidePlayImage()
         self.setIsPlaying(!self.state.isplaying)
     }
+    
+
+    @IBAction func onTouchDownX2(_ sender: Any) {
+        self.isX2SpeedEnabled = true
+        let generator = UIImpactFeedbackGenerator(style: .light)
+        generator.prepare()
+        generator.impactOccurred()
+    }
+    
+    @IBAction func onTouchUpX2(_ sender: Any) {
+        self.isX2SpeedEnabled = false
+    }
 }
 
 extension TikTokCollectionViewCell {
     private func modifyLayer(opacity value: Float) {
-        self.labelsContainer.layer.opacity = value
-        self.actionsContainer.layer.opacity = value
+        UIView.animate(withDuration: 0.25) {
+            self.labelsContainer.layer.opacity = value
+            self.actionsContainer.layer.opacity = value
+        }
     }
     
     public func setIsPlaying(_ isPlaying: Bool) {
@@ -157,5 +189,11 @@ extension TikTokCollectionViewCell {
     public func onVisibleCellConfiguration() {
         self.playVideo()
         self.hidePlayImage()
+    }
+    
+    public func onX2VideoConfiguration() {
+        self.player?.rate = self.isX2SpeedEnabled ? 2 : 1
+        hidePlayImage()
+        modifyLayer(opacity: self.isX2SpeedEnabled ? 0 : 1)
     }
 }

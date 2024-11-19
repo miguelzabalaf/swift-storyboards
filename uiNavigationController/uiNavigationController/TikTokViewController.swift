@@ -18,7 +18,9 @@ class TikTokViewController: UIViewController {
 
     @IBOutlet weak var tiktokCollectionView: UICollectionView!
     @IBOutlet weak var tiktokCollectionViewFlowLayout: UICollectionViewFlowLayout!
- 
+    @IBOutlet weak var tiktokTopSectionView: UIStackView!
+    @IBOutlet weak var tiktokBottomTabContainerView: UIView!
+    
     var dataSource: [TikTokData] = [
         .init(user: "Miguel Zabala F.", profileImage: ._1, description: "This is my first post in this TikTok clone 😮‍💨", videoName: "video1"),
         .init(user: "Migue", profileImage: ._2, description: "What's up my friends 🫡, this is my second post in this TikTok clone", videoName: "video2"),
@@ -29,6 +31,7 @@ class TikTokViewController: UIViewController {
     
     private var previousVisibleIndex: IndexPath?
     private var hasExecutedFunctionForFirstCell = false
+    private var speedContainer: UIView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,6 +78,7 @@ extension TikTokViewController: UICollectionViewDataSource, UICollectionViewDele
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TikTokCollectionViewCell", for: indexPath) as! TikTokCollectionViewCell
         cell.setupTikTokData(with: currentCellData, isTheFistVideo: isTheFristCell && !self.hasExecutedFunctionForFirstCell)
         self.hasExecutedFunctionForFirstCell = true
+        cell.delegate = self
         return cell
     }
 }
@@ -144,3 +148,76 @@ extension TikTokViewController: UIScrollViewDelegate {
     }
 }
 
+extension TikTokViewController: TikTokCollectionViewCellDelegate {
+    func onX2SpeedEnabled(_ isEnabled: Bool) {
+        UIView.animate(withDuration: 0.25) {
+            self.tiktokTopSectionView.layer.opacity = isEnabled ? 0 : 1
+        }
+        self.onX2Configuration(isEnabled)
+    }
+    
+    func onX2Configuration(_ isEnabled: Bool) {
+        // 1. Inicializa el contenedor solo si no existe
+        if speedContainer == nil {
+            let container = UIView()
+            container.translatesAutoresizingMaskIntoConstraints = false
+            container.backgroundColor = .clear
+            self.tiktokBottomTabContainerView.addSubview(container)
+            
+            NSLayoutConstraint.activate([
+                container.topAnchor.constraint(equalTo: tiktokBottomTabContainerView.topAnchor),
+                container.bottomAnchor.constraint(equalTo: tiktokBottomTabContainerView.bottomAnchor),
+                container.leadingAnchor.constraint(equalTo: tiktokBottomTabContainerView.leadingAnchor),
+                container.trailingAnchor.constraint(equalTo: tiktokBottomTabContainerView.trailingAnchor)
+            ])
+            
+            // 2. Crear y configurar el StackView
+            let stackView = UIStackView()
+            stackView.axis = .horizontal
+            stackView.alignment = .center
+            stackView.spacing = 8 // Espaciado entre elementos
+            stackView.translatesAutoresizingMaskIntoConstraints = false
+            
+            container.addSubview(stackView)
+            
+            NSLayoutConstraint.activate([
+                stackView.centerXAnchor.constraint(equalTo: container.centerXAnchor),
+                stackView.centerYAnchor.constraint(equalTo: container.centerYAnchor, constant: -8)
+            ])
+            
+            // 3. Configurar elementos del StackView
+            let label = UILabel()
+            label.text = "Speed: 2x"
+            label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+            label.textColor = .white
+            
+            let x2ImageView = UIImageView(image: UIImage(systemName: "forward.fill"))
+            x2ImageView.tintColor = .white
+            x2ImageView.contentMode = .scaleAspectFit
+            
+            // Añadir elementos al StackView
+            stackView.addArrangedSubview(label)
+            stackView.addArrangedSubview(x2ImageView)
+            
+            // 4. Almacena la referencia del contenedor
+            self.speedContainer = container
+        }
+        
+        guard let speedContainer = speedContainer else { return }
+
+        // 5. Ocultar contenido de `tiktokBottomTabContainerView` excepto el contenedor
+        for subview in tiktokBottomTabContainerView.subviews {
+            if subview !== speedContainer {
+                UIView.animate(withDuration: 0.25) {
+                    subview.alpha = isEnabled ? 0 : 1
+                }
+            }
+        }
+        
+        // 6. Actualizar visibilidad y animar el contenedor
+        UIView.animate(withDuration: 0.25, delay: 0, options: [.curveEaseInOut]) {
+            speedContainer.alpha = isEnabled ? 1 : 0
+            speedContainer.transform = isEnabled ? .identity : CGAffineTransform(translationX: 0, y: 15)
+        }
+    }
+}
