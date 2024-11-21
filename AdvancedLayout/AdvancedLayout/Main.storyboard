@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HbH-0d-J5y">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ow4-as-VcO">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -35,10 +35,142 @@
             </objects>
             <point key="canvasLocation" x="1561" y="873"/>
         </scene>
+        <!--Custom Animated Bottom Tab View Controller-->
+        <scene sceneID="1vW-8y-6KF">
+            <objects>
+                <viewController id="Ow4-as-VcO" customClass="CustomAnimatedBottomTabViewController" customModule="AdvancedLayout" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="caE-YP-g5z" userLabel="Main View">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j4s-eo-Elh" userLabel="Bottom Tab Container View">
+                                <rect key="frame" x="0.0" y="727" width="393" height="125"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Hz-Dt-Djj" userLabel="Bottom Tab Expanded Container">
+                                        <rect key="frame" x="32" y="0.0" width="329" height="91"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="32"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskBounds" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="zbB-X8-pjh" userLabel="Bottom Tab HStack View">
+                                        <rect key="frame" x="32" y="28.666666666666632" width="329" height="34.333333333333343"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mb8-PC-KbJ" userLabel="Home">
+                                                <rect key="frame" x="0.0" y="0.0" width="82.333333333333329" height="34.333333333333336"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="Home"/>
+                                                <color key="tintColor" systemColor="systemGrayColor"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="house" catalog="system"/>
+                                                <connections>
+                                                    <action selector="onSelectTab:forEvent:" destination="Ow4-as-VcO" eventType="touchUpInside" id="tfT-SD-eNY"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wD5-qI-ftg" userLabel="Grid">
+                                                <rect key="frame" x="82.333333333333343" y="0.0" width="82.333333333333343" height="34.333333333333336"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="Grid"/>
+                                                <color key="tintColor" systemColor="systemGrayColor"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="square.grid.2x2" catalog="system"/>
+                                                <connections>
+                                                    <action selector="onSelectTab:forEvent:" destination="Ow4-as-VcO" eventType="touchUpInside" id="HCx-64-Qlh"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pl9-hn-z8V" userLabel="Chart">
+                                                <rect key="frame" x="164.66666666666666" y="0.0" width="82" height="34.333333333333336"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="Chart"/>
+                                                <color key="tintColor" systemColor="systemGrayColor"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="chart.pie" catalog="system"/>
+                                                <connections>
+                                                    <action selector="onSelectTab:forEvent:" destination="Ow4-as-VcO" eventType="touchUpInside" id="4Si-ix-Olf"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0FW-zx-meu" userLabel="Person">
+                                                <rect key="frame" x="246.66666666666671" y="0.0" width="82.333333333333343" height="34.333333333333336"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="Person"/>
+                                                <color key="tintColor" systemColor="systemGrayColor"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="person" catalog="system"/>
+                                                <connections>
+                                                    <action selector="onSelectTab:forEvent:" destination="Ow4-as-VcO" eventType="touchUpInside" id="Q2k-2l-WHD"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <viewLayoutGuide key="safeArea" id="a8y-IZ-UAR"/>
+                                <constraints>
+                                    <constraint firstItem="a8y-IZ-UAR" firstAttribute="bottom" secondItem="9Hz-Dt-Djj" secondAttribute="bottom" id="0hv-mn-Avp"/>
+                                    <constraint firstItem="9Hz-Dt-Djj" firstAttribute="top" secondItem="j4s-eo-Elh" secondAttribute="top" id="63K-ln-ptC"/>
+                                    <constraint firstAttribute="height" constant="125" id="D7Q-Xd-me1"/>
+                                    <constraint firstAttribute="trailing" secondItem="9Hz-Dt-Djj" secondAttribute="trailing" constant="32" id="D7a-hu-HWg"/>
+                                    <constraint firstItem="9Hz-Dt-Djj" firstAttribute="leading" secondItem="j4s-eo-Elh" secondAttribute="leading" constant="32" id="HmY-jc-n2s"/>
+                                    <constraint firstItem="a8y-IZ-UAR" firstAttribute="bottom" secondItem="zbB-X8-pjh" secondAttribute="bottom" constant="28" id="c6U-sB-fVc"/>
+                                    <constraint firstItem="a8y-IZ-UAR" firstAttribute="trailing" secondItem="zbB-X8-pjh" secondAttribute="trailing" constant="32" id="eoR-Q0-tV7"/>
+                                    <constraint firstItem="zbB-X8-pjh" firstAttribute="leading" secondItem="a8y-IZ-UAR" secondAttribute="leading" constant="32" id="vwY-sn-dbL"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OW1-s8-h4L">
+                                <rect key="frame" x="32" y="680" width="329" height="31"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expand Bottom Tab" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UAu-tU-53W">
+                                        <rect key="frame" x="0.0" y="0.0" width="280" height="31"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <color key="textColor" systemColor="systemGrayColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="aMl-8Z-eFr">
+                                        <rect key="frame" x="280" y="0.0" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="onExpandBottomTab:" destination="Ow4-as-VcO" eventType="valueChanged" id="0Fg-mH-pDD"/>
+                                        </connections>
+                                    </switch>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="GSh-jt-oH0"/>
+                        <color key="backgroundColor" red="0.82799226049999997" green="0.87029302119999996" blue="0.97982817889999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="j4s-eo-Elh" secondAttribute="bottom" id="Onz-uo-PzZ"/>
+                            <constraint firstItem="GSh-jt-oH0" firstAttribute="trailing" secondItem="OW1-s8-h4L" secondAttribute="trailing" constant="32" id="Qmd-k9-68T"/>
+                            <constraint firstItem="GSh-jt-oH0" firstAttribute="trailing" secondItem="j4s-eo-Elh" secondAttribute="trailing" id="XRK-7k-sMZ"/>
+                            <constraint firstItem="j4s-eo-Elh" firstAttribute="top" secondItem="OW1-s8-h4L" secondAttribute="bottom" constant="16" id="YZ4-D0-AOS"/>
+                            <constraint firstItem="OW1-s8-h4L" firstAttribute="leading" secondItem="GSh-jt-oH0" secondAttribute="leading" constant="32" id="irP-uA-HWp"/>
+                            <constraint firstItem="j4s-eo-Elh" firstAttribute="leading" secondItem="GSh-jt-oH0" secondAttribute="leading" id="vdF-Fs-v4T"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="bottomTabContainer" destination="j4s-eo-Elh" id="hlj-4E-PdP"/>
+                        <outlet property="bottomTabExpandedContainer" destination="9Hz-Dt-Djj" id="y1G-yw-AX7"/>
+                        <outlet property="bottomTabExpandedContainerBottomConstraints" destination="0hv-mn-Avp" id="Mlc-pi-4Rq"/>
+                        <outlet property="bottomTabExpandedContainerLeadingConstraints" destination="HmY-jc-n2s" id="iwX-XE-KKC"/>
+                        <outlet property="bottomTabExpandedContainerTrailingConstraints" destination="D7a-hu-HWg" id="upK-7D-GHl"/>
+                        <outlet property="bottomTabHSTackView" destination="zbB-X8-pjh" id="co2-NY-vWe"/>
+                        <outlet property="expandBottomTabLabel" destination="UAu-tU-53W" id="XqW-2E-1Vn"/>
+                        <outlet property="expandBottomTabSwitch" destination="aMl-8Z-eFr" id="ypl-08-54J"/>
+                        <outlet property="homeButton" destination="mb8-PC-KbJ" id="gdh-1Z-6zZ"/>
+                        <outlet property="mainView" destination="caE-YP-g5z" id="9b5-7d-Avz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M9M-Og-RhU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2550.3816793893129" y="872.53521126760563"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="chart.pie" catalog="system" width="128" height="123"/>
+        <image name="house" catalog="system" width="128" height="104"/>
+        <image name="person" catalog="system" width="128" height="121"/>
+        <image name="square.grid.2x2" catalog="system" width="128" height="114"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

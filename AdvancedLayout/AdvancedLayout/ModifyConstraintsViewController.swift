@@ -56,21 +56,20 @@ class ModifyConstraintsViewController: UIViewController {
         // Disabled automatic constraints
         childBoxRed.translatesAutoresizingMaskIntoConstraints = false
         
-        // Create size constraints
-        let childBoxRedHeightConstraint = childBoxRed.heightAnchor.constraint(equalToConstant: 50)
-        let childBoxRedWidthConstraint = childBoxRed.widthAnchor.constraint(equalToConstant: 50)
-        
         // Add sub view to yellow View
         yellowView.addSubview(childBoxRed)
         
-        let childBoxRedCenterXConstraint = childBoxRed.centerXAnchor.constraint(equalTo: yellowView.centerXAnchor)
-        let childBoxRedCenterYConstraint = childBoxRed.centerYAnchor.constraint(equalTo: yellowView.centerYAnchor)
+        let childBoxRedTopAnchorConstraint = childBoxRed.topAnchor.constraint(equalTo: yellowView.topAnchor, constant: 16)
+        let childBoxRedLeadingAnchorConstraint = childBoxRed.leadingAnchor.constraint(equalTo: yellowView.leadingAnchor, constant: 16)
+        let childBoxRedWidthAnchor = childBoxRed.widthAnchor.constraint(equalTo: yellowView.heightAnchor, multiplier: 0.5)
+        let childBoxRedHeightAnchor = childBoxRed.heightAnchor.constraint(equalTo: childBoxRed.widthAnchor)
+        
         
         NSLayoutConstraint.activate([
-            childBoxRedHeightConstraint,
-            childBoxRedWidthConstraint,
-            childBoxRedCenterXConstraint,
-            childBoxRedCenterYConstraint
+            childBoxRedTopAnchorConstraint,
+            childBoxRedLeadingAnchorConstraint,
+            childBoxRedWidthAnchor,
+            childBoxRedHeightAnchor,
         ])
         
         let childBoxBlue = UIView()
@@ -128,14 +127,14 @@ class ModifyConstraintsViewController: UIViewController {
     
     @objc private func buttonUpTapped() {
         UIView.animate(withDuration: 0.25) {
-            self.yellowHeightConstraint.constant += 10
+            self.yellowHeightConstraint.constant += 100
             self.view.layoutIfNeeded()
         }
     }
     
     @objc private func buttonDownTapped() {
         UIView.animate(withDuration: 0.25) {
-            self.yellowHeightConstraint.constant -= 10
+            self.yellowHeightConstraint.constant -= 100
             self.view.layoutIfNeeded()
         }
     }
