@@ -76,13 +76,13 @@ class LayoutWithKeyboardViewController: UIViewController {
             return
         }
         
-        // Actualiza la constante del constraint
+        // Update constraint constant
         contentViewBottomConstraints.constant = keyboardFrame.height + 16
 
-        // Convierte el valor de la curva a UIView.AnimationOptions
+        // Transform curve value to UIView.AnimationOptions
         let animationCurve = UIView.AnimationOptions(rawValue: animationCurveRawValue << 16)
 
-        // Aplica una animación fluida
+        // Apply fluid animation
         animateConstraints(view: self.view, duration: animationDuration, curve: animationCurve)
     }
 
@@ -92,13 +92,13 @@ class LayoutWithKeyboardViewController: UIViewController {
             return
         }
 
-        // Restaura el constraint
+        // Restore constraints
         contentViewBottomConstraints.constant = 0
 
-        // Convierte el valor de la curva a UIView.AnimationOptions
+        // Transform curve value to UIView.AnimationOptions
         let animationCurve = UIView.AnimationOptions(rawValue: animationCurveRawValue << 16)
 
-        // Aplica una animación fluida
+        // Apply fluid animation
         animateConstraints(view: self.view, duration: animationDuration, curve: animationCurve)
     }}
 
@@ -106,11 +106,11 @@ class LayoutWithKeyboardViewController: UIViewController {
 extension LayoutWithKeyboardViewController {
     private func animateConstraints(view: UIView, duration: Double, curve: UIView.AnimationOptions) {
         UIView.animate(
-            withDuration: duration, // Duración dinámica
-            delay: 0,               // Sin retraso
-            options: curve,         // Curva de animación personalizada
+            withDuration: duration, // Dinamic duration
+            delay: 0,               // Without delay
+            options: curve,         // Animation cuve personalized
             animations: {
-                view.layoutIfNeeded() // Aplica los cambios de Auto Layout
+                view.layoutIfNeeded() // Apply layout changes
             },
             completion: nil
         )
